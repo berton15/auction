@@ -1,5 +1,4 @@
 
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -13,6 +12,8 @@ import org.junit.Test;
  */
 public class AuctionTest
 {
+    private Auction auction1;
+
     /**
      * Default constructor for test class AuctionTest
      */
@@ -28,6 +29,7 @@ public class AuctionTest
     @Before
     public void setUp()
     {
+        auction1 = new Auction();
     }
 
     /**
@@ -39,4 +41,24 @@ public class AuctionTest
     public void tearDown()
     {
     }
+
+    @Test
+    public void testClose()
+    {
+        // Make some lots
+        auction1.enterLot("Ornate chest");
+        auction1.enterLot("Painting of a pig");
+        auction1.enterLot("Gold cup");
+        // Show the entered lots
+        auction1.showLots();
+        // Make a bidder
+        Person person1 = new Person("Source Hunter");
+        // Make a bid
+        auction1.makeABid(2, person1, 1000);
+        // Show lots to check bid
+        auction1.showLots();
+        // Close auctions
+        auction1.close();
+    }
 }
+
